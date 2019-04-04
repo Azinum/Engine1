@@ -3,15 +3,15 @@
 #ifndef _TEXTURE_H
 #define _TEXTURE_H
 
+#include "ImageLoader.h"
+
 struct Texture {
   int textureId;
-  int width;
-  int height;
-  unsigned char* pixelBuffer;
+  struct Image image;
 };
 
 struct Texture loadTexture(const char* fileName);
 
-void deleteTexture(struct Texture texture);
+void freeTexture(struct Texture* texture);
 
 #endif // _TEXTURE_H

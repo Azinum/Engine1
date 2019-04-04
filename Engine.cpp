@@ -44,6 +44,8 @@ int engineExecute() {
   return 0;
 }
 
+float engineGetTime();
+
 void engineDestroy() {
   windowDestroy();
 }

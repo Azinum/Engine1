@@ -33,6 +33,8 @@ struct Model createModel(const char* file) {
   };
 
   Texture texture = loadTexture("Resources/Textures/Test.png");
+  
+  freeTexture(&texture);
 
   model.drawCount = ARRAY_SIZE(indices);
 

@@ -3,6 +3,15 @@
 #ifndef _IMAGELOADER_H
 #define _IMAGELOADER_H
 
-bool loadPNG(const char* fileName, int* width, int* height, unsigned char* pixelBuffer);
+struct Image {
+  int width;
+  int height;
+  int format;
+  unsigned char* pixelBuffer;
+};
+
+bool loadPNG(const char* fileName, struct Image* image);
+
+void freePNG(unsigned char* pixelBuffer);
 
 #endif // _IMAGELOADER_H

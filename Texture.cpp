@@ -9,14 +9,15 @@
 
 struct Texture loadTexture(const char* fileName) {
   struct Texture texture = {0};
+  if (loadPNG(fileName, &texture.image)) {
 
-  if (loadPNG(fileName, &texture.width, &texture.height, texture.pixelBuffer)) {
-
+  } else {
+    printf("Failed to load PNG file\n");
   }
 
   return texture;
 }
 
-void deleteTexture(struct Texture texture) {
-
+void freeTexture(struct Texture* texture) {
+  freePNG(texture->image.pixelBuffer);
 }
