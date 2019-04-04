@@ -6,7 +6,7 @@ CC = g++
 
 FILES := $(shell find *.cpp)
 
-FLAGS_MAC = $(FILES) -o engine1 -Os -Iinclude -lSDL2 -lGLEW -lm -framework OpenGL
+FLAGS_MAC = $(FILES) -o engine1 -O2 -Iinclude -lSDL2 -lGLEW -lm -lpng -framework OpenGL
 
 
 all: build_all

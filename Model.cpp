@@ -3,6 +3,8 @@
 #include "Model.h"
 #include "Window.h"
 
+#include "Texture.h"
+
 void storeInAttributeList(struct Model* model, int attribute, int count, unsigned int size, float* data);
 
 struct Model createModel(const char* file) {
@@ -29,6 +31,8 @@ struct Model createModel(const char* file) {
     0, 3, 2,  // These are flipped
     2, 1, 0
   };
+
+  Texture texture = loadTexture("Resources/Textures/Test.png");
 
   model.drawCount = ARRAY_SIZE(indices);
 

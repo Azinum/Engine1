@@ -14,7 +14,7 @@ char* readEntireFile(const char* path) {
    if (file == NULL) {
      printf("Failed to open file '%s\'\n", path);
      fclose(file);
-     return buffer;
+     return NULL;
    }
 
    fseek(file, 0, SEEK_END);
