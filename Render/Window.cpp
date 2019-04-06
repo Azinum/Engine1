@@ -6,6 +6,7 @@
 #include "Render/Shader.h"
 #include "Render/Model.h"
 #include "Render/Render.h"
+#include "Render/Texture.h"
 
 struct Window {
   bool initialized;
@@ -18,6 +19,7 @@ static struct Window _window;
 
 struct Model _model;
 struct Shader _shader;
+struct Texture _texture;
 
 int windowCreate(const char* title, int width, int height) {
   if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
@@ -78,8 +80,10 @@ int windowCreate(const char* title, int width, int height) {
   printf("GLSL VERSION: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
   printf("--\n");
 
+  _texture = loadTexture("Resources/Textures/Test");
   _model = createModel("Resources/Meshes/Test");
   _shader = createShader("Resources/Shaders/Core");
+  freeTexture(&_texture);
   return 0;
 }
 

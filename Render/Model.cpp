@@ -32,10 +32,6 @@ struct Model createModel(const char* file) {
     2, 1, 0
   };
 
-  Texture texture = loadTexture("Resources/Textures/Test.png");
-  
-  freeTexture(&texture);
-
   model.drawCount = ARRAY_SIZE(indices);
 
   glGenVertexArrays(1, &model.vao);
