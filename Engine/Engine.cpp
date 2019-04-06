@@ -7,11 +7,6 @@
 #include <stdio.h>
 #include <time.h>
 
-struct Engine {
-  bool initialized;
-  bool isRunning;
-};
-
 static struct Engine _engine;
 
 int engineCreate(int argc, char** argv) {
@@ -44,7 +39,9 @@ int engineExecute() {
   return 0;
 }
 
-float engineGetTime();
+struct Engine* engine() {
+  return &_engine;
+}
 
 void engineDestroy() {
   windowDestroy();

@@ -3,9 +3,14 @@
 #ifndef _ENGINE_H
 #define _ENGINE_H
 
-struct Engine;
+struct Engine {
+  bool initialized;
+  bool isRunning;
+};
 
 int engineCreate(int argc, char** argv);
+
+struct Engine* engine();
 
 int engineExecute();
 
