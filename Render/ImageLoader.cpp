@@ -1,7 +1,7 @@
 // ImageLoader.cpp
 
-#include "ImageLoader.h"
-#include "Window.h"
+#include "Render/ImageLoader.h"
+#include "Render/Window.h"
 
 #include <stdlib.h>
 #include <stdio.h>

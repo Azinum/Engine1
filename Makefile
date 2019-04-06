@@ -2,11 +2,9 @@
 
 CC = g++
 
-# FLAGS = *.c -o engine3 -Os -std=c99 -Iinclude -lSDL2 -GL -lGLFW -lGLEW -lm
+SOURCE_FILES := $(shell find . -name \*.cpp -print)
 
-FILES := $(shell find *.cpp)
-
-FLAGS_MAC = $(FILES) -o engine1 -O2 -Iinclude -lSDL2 -lGLEW -lm -lpng -framework OpenGL
+FLAGS_MAC = $(SOURCE_FILES) -o engine1 -O2 -Iinclude -lSDL2 -lGLEW -lm -lpng -framework OpenGL
 
 
 all: build_all

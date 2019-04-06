@@ -1,8 +1,8 @@
 // Render.cpp
 
-#include "Render.h"
-#include "Window.h"
-#include "Model.h"
+#include "Render/Render.h"
+#include "Render/Window.h"
+#include "Render/Model.h"
 
 void renderModel(struct Model* model) {
   if (!model) return;

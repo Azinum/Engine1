@@ -1,9 +1,9 @@
 // Model.cpp
 
-#include "Model.h"
-#include "Window.h"
+#include "Render/Model.h"
+#include "Render/Window.h"
 
-#include "Texture.h"
+#include "Render/Texture.h"
 
 void storeInAttributeList(struct Model* model, int attribute, int count, unsigned int size, float* data);
 
@@ -60,8 +60,3 @@ void storeInAttributeList(struct Model* model, int attribute, int count, unsigne
   glVertexAttribPointer(attribute, count, GL_FLOAT, GL_FALSE, 0, 0);
   glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
-
-
-
-
-

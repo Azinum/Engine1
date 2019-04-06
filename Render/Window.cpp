@@ -1,9 +1,9 @@
 // Window.cpp
 
-#include "Window.h"
-#include "Shader.h"
-#include "Model.h"
-#include "Render.h"
+#include "Render/Window.h"
+#include "Render/Shader.h"
+#include "Render/Model.h"
+#include "Render/Render.h"
 
 struct Window {
   bool initialized;

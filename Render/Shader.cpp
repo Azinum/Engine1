@@ -1,7 +1,7 @@
 // Shader.cpp
 
-#include "Shader.h"
-#include "Window.h"
+#include "Render/Shader.h"
+#include "Render/Window.h"
 #include "File.h"
 
 struct Shader createShader(const char* fileName) {

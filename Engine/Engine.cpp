@@ -1,7 +1,7 @@
 // Engine.cpp
 
-#include "Engine.h"
-#include "Window.h"
+#include "Engine/Engine.h"
+#include "Render/Window.h"
 
 #include <stdlib.h>
 #include <stdio.h>
