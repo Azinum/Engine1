@@ -123,17 +123,14 @@ void windowRender() {
   SDL_Window* window = _window.window;
   if (!window) return;
 
-  // useTexture(&_texture);
   useShader(&_shader);
   renderTexturedModel(&_model, &_texture);
-  // renderModel(&_model);
 
   SDL_GL_SwapWindow(window);
 }
 
 void windowDestroy() {
   freeTexture(&_texture);
-
   SDL_DestroyWindow(_window.window);
   SDL_GL_DeleteContext(_window.context);
   SDL_Quit();

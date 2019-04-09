@@ -62,14 +62,16 @@ bool compileShader(struct Shader* shader, const char* vertexSource, const char* 
   glLinkProgram(shader->program);
 
   {
-    glValidateProgram(shader->program);
+    // glValidateProgram(shader->program);
     glGetProgramiv(shader->program, GL_VALIDATE_STATUS, &success);
-    if (success != 1) {
+    if (success != GL_NO_ERROR) {
       glGetProgramInfoLog(shader->program, 512, NULL, log);
       fprintf(stderr, "%s", log);
       return false;
     }
   }
+  glGetProgramInfoLog(shader->program, 512, NULL, log);
+  fprintf(stderr, "%s", log);
   return true;
 }
 

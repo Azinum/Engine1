@@ -7,6 +7,7 @@
 
 struct Texture {
   unsigned int textureId;
+  bool isValid;
   struct Image image;
 };
 
