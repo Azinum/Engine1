@@ -14,7 +14,7 @@ struct Shader createShader(const char* fileName);
 
 bool compileShader(struct Shader* shader, const char* vertexSource, const char* fragSource);
 
-void useShader(struct Shader shader);
+void useShader(struct Shader* shader);
 
 void bindAttribute(int program, int index, const char* name);
 

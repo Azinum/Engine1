@@ -73,9 +73,9 @@ bool compileShader(struct Shader* shader, const char* vertexSource, const char* 
   return true;
 }
 
-void useShader(struct Shader shader) {
-  if (shader.isValid) {
-    glUseProgram(shader.program);
+void useShader(struct Shader* shader) {
+  if (shader->isValid) {
+    glUseProgram(shader->program);
   }
 }
 

@@ -80,10 +80,9 @@ int windowCreate(const char* title, int width, int height) {
   printf("GLSL VERSION: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
   printf("--\n");
 
-  _texture = loadTexture("Resources/Textures/Test");
+  _texture = loadTexture("Resources/Textures/Texture_Small");
   _model = createModel("Resources/Meshes/Test");
   _shader = createShader("Resources/Shaders/Core");
-  freeTexture(&_texture);
   return 0;
 }
 
@@ -124,13 +123,17 @@ void windowRender() {
   SDL_Window* window = _window.window;
   if (!window) return;
 
-  useShader(_shader);
-  renderModel(&_model);
+  // useTexture(&_texture);
+  useShader(&_shader);
+  renderTexturedModel(&_model, &_texture);
+  // renderModel(&_model);
 
   SDL_GL_SwapWindow(window);
 }
 
 void windowDestroy() {
+  freeTexture(&_texture);
+
   SDL_DestroyWindow(_window.window);
   SDL_GL_DeleteContext(_window.context);
   SDL_Quit();

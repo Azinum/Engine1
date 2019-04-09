@@ -19,10 +19,14 @@ struct Model createModel(const char* file) {
   };
 
   float textureCoords[] = {
-    0, 0,
-    1, 0,
+    // 0, 0,
+    // 1, 0,
+    // 1, 1,
+    // 0, 1,
+    0, 1,
     1, 1,
-    0, 1, 
+    1, 0,
+    0, 0,
   };
 
   int indices[] = {
@@ -38,6 +42,7 @@ struct Model createModel(const char* file) {
   glBindVertexArray(model.vao);
 
   storeInAttributeList(&model, 0, 3, sizeof(vertices), vertices);
+  storeInAttributeList(&model, 1, 2, sizeof(textureCoords), textureCoords);
 
   glGenBuffers(1, &model.ebo);
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, model.ebo);

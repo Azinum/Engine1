@@ -6,11 +6,13 @@
 #include "ImageLoader.h"
 
 struct Texture {
-  int textureId;
+  unsigned int textureId;
   struct Image image;
 };
 
 struct Texture loadTexture(const char* fileName);
+
+void useTexture(struct Texture* texture);
 
 void freeTexture(struct Texture* texture);
 

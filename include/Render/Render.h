@@ -5,4 +5,6 @@
 
 void renderModel(struct Model* model);
 
+void renderTexturedModel(struct Model* model, struct Texture* texture);
+
 #endif // _RENDER_H
