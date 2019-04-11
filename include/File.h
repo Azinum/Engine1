@@ -5,4 +5,6 @@
 
 char* readEntireFile(const char* path);
 
+bool fileExists(const char* path);
+
 #endif // _FILE_H

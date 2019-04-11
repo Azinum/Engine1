@@ -80,8 +80,8 @@ int windowCreate(const char* title, int width, int height) {
   printf("GLSL VERSION: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
   printf("--\n");
 
-  _texture = loadTexture("Resources/Textures/Texture_Small");
-  _model = createModel("Resources/Meshes/House");
+  _texture = loadTexture("Resources/Textures/Texture_Monkey");
+  _model = createModel("Resources/Meshes/Monkey");
   _shader = createShader("Resources/Shaders/Core");
   return 0;
 }

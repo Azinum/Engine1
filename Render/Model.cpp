@@ -2,7 +2,7 @@
 
 #include "Render/Model.h"
 #include "Render/Window.h"
-
+#include "Render/MeshLoader.h"
 #include "Render/Texture.h"
 
 void storeInAttributeList(struct Model* model, int attribute, int count, unsigned int size, float* data);
@@ -10,43 +10,19 @@ void storeInAttributeList(struct Model* model, int attribute, int count, unsigne
 struct Model createModel(const char* file) {
   struct Model model = {0};
   
-  // Temporary till we use real model files
-  float vertices[] = {
-    -0.5f, 0.5f, 0,
-    0.5f, 0.5f, 0,
-    0.5f, -0.5f, 0,
-    -0.5f, -0.5f, 0,
-  };
+  struct RawMesh mesh = loadRawMesh(file);
 
-  float textureCoords[] = {
-    // 0, 0,
-    // 1, 0,
-    // 1, 1,
-    // 0, 1,
-    0, 1,
-    1, 1,
-    1, 0,
-    0, 0,
-  };
-
-  int indices[] = {
-    // 0, 1, 2,
-    // 2, 3, 0
-    0, 3, 2,  // These are flipped
-    2, 1, 0
-  };
-
-  model.drawCount = ARRAY_SIZE(indices);
+  model.drawCount = mesh.drawCount;
 
   glGenVertexArrays(1, &model.vao);
   glBindVertexArray(model.vao);
 
-  storeInAttributeList(&model, 0, 3, sizeof(vertices), vertices);
-  storeInAttributeList(&model, 1, 2, sizeof(textureCoords), textureCoords);
+  storeInAttributeList(&model, 0, 3, mesh.vertices.size() * sizeof(float), &mesh.vertices[0]);
+  storeInAttributeList(&model, 1, 2, mesh.uvs.size() * sizeof(float), &mesh.uvs[0]);
 
   glGenBuffers(1, &model.ebo);
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, model.ebo);
-  glBufferData(GL_ELEMENT_ARRAY_BUFFER, ARRAY_SIZE(indices) * sizeof(unsigned int), indices, GL_STATIC_DRAW);
+  glBufferData(GL_ELEMENT_ARRAY_BUFFER, mesh.indices.size() * sizeof(unsigned int), &mesh.indices[0], GL_STATIC_DRAW);
 
   return model;
 }

@@ -36,3 +36,11 @@ char* readEntireFile(const char* path) {
    fclose(file);
    return buffer;
 }
+
+bool fileExists(const char* path) {
+  FILE* file = fopen(path, "r");
+  bool success = false;
+  if (file != NULL) success = true;
+  fclose(file);
+  return success;
+}
