@@ -81,7 +81,7 @@ int windowCreate(const char* title, int width, int height) {
   printf("--\n");
 
   _texture = loadTexture("Resources/Textures/Texture_Small");
-  _model = createModel("Resources/Meshes/Test");
+  _model = createModel("Resources/Meshes/House");
   _shader = createShader("Resources/Shaders/Core");
   return 0;
 }
