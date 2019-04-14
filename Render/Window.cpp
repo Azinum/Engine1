@@ -68,11 +68,14 @@ int windowCreate(const char* title, int width, int height) {
     return -1;
   }
 
-  glDisable(GL_CULL_FACE);
   glEnable(GL_BLEND);
   glEnable(GL_DEPTH_TEST);
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
   glShadeModel(GL_FLAT);
+
+  glFrontFace(GL_CW);
+  glCullFace(GL_BACK);
+  glEnable(GL_CULL_FACE);
 
   printf("GL VENDOR:    %s\n", glGetString(GL_VENDOR));
   printf("GL RENDERER:  %s\n", glGetString(GL_RENDERER));
@@ -80,8 +83,8 @@ int windowCreate(const char* title, int width, int height) {
   printf("GLSL VERSION: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
   printf("--\n");
 
-  _texture = loadTexture("Resources/Textures/Texture_Monkey");
-  _model = createModel("Resources/Meshes/Monkey");
+  _texture = loadTexture("Resources/Textures/Texture_Stall");
+  _model = createModel("Resources/Meshes/Stall");
   _shader = createShader("Resources/Shaders/Core");
   return 0;
 }

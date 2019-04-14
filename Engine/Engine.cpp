@@ -17,7 +17,7 @@ int engineCreate(int argc, char** argv) {
     .isRunning = true
   };
 
-  if (windowCreate("Engine1 [768 x 512]", 768, 512) != 0) {
+  if (windowCreate("Engine1 [800 x 600]", 800, 600) != 0) {
     printf("%s\n", "Failed to create window");
     return -1;
   }

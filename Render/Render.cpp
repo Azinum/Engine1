@@ -19,6 +19,8 @@ void renderModel(struct Model* model) {
 
 void renderTexturedModel(struct Model* model, struct Texture* texture) {
   if (!model) return;
+  if (!texture) return;
+  if (!texture->isValid) return;
   
   glBindVertexArray(model->vao);
   glEnableVertexAttribArray(0);

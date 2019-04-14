@@ -9,7 +9,7 @@ void storeInAttributeList(struct Model* model, int attribute, int count, unsigne
 
 struct Model createModel(const char* file) {
   struct Model model = {0};
-  
+
   struct RawMesh mesh = loadRawMesh(file);
 
   model.drawCount = mesh.drawCount;
@@ -23,7 +23,6 @@ struct Model createModel(const char* file) {
   glGenBuffers(1, &model.ebo);
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, model.ebo);
   glBufferData(GL_ELEMENT_ARRAY_BUFFER, mesh.indices.size() * sizeof(unsigned int), &mesh.indices[0], GL_STATIC_DRAW);
-
   return model;
 }
 

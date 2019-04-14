@@ -3,6 +3,8 @@
 #include "Render/MeshLoader.h"
 #include "File.h"
 
+#include <algorithm>
+
 bool parseFile(struct RawMesh* mesh, char* path);
 
 struct RawMesh loadRawMesh(const char* fileName) {
@@ -45,7 +47,7 @@ bool parseFile(struct RawMesh* mesh, char* path) {
     }
     // f => vertex / texture coord / normal
     else if (strcmp(word, "f") == 0) {
-      int x[3], y[3], z[3];
+      unsigned int x[3], y[3], z[3];
       int match = fscanf(file, "%i/%i/%i %i/%i/%i %i/%i/%i\n",
         &x[0], &y[0], &z[0],
         &x[1], &y[1], &z[1],
@@ -53,7 +55,7 @@ bool parseFile(struct RawMesh* mesh, char* path) {
       );
 
       if (match != 9) {
-        printf("%s\n", "Can't read this .obj file");
+        printf("%s\n", "Can't parse this .obj file");
         fclose(file);
         return false;
       }
@@ -74,9 +76,15 @@ bool parseFile(struct RawMesh* mesh, char* path) {
     }
   }
 
-  for (int i = 0; i < mesh->uvIndices.size(); i++) {
-    mesh->uvs.push_back(tempuvs[i * 2]);
-    mesh->uvs.push_back(tempuvs[(i * 2) + 1]);
+  mesh->uvs.resize(mesh->indices.size());
+
+  for (int i = 0; i < mesh->indices.size(); i++) {
+    unsigned int index = mesh->indices[i];
+    float u, v;
+    u = tempuvs[mesh->uvIndices[i] * 2];
+    v = tempuvs[mesh->uvIndices[i] * 2 + 1];
+    mesh->uvs[index * 2] = u;
+    mesh->uvs[index * 2 + 1] = 1 - v;
   }
 
   fclose(file);

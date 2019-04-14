@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <vector>
+
 int main(int argc, char** argv) {
   if (engineCreate(argc, argv) != 0) {
     printf("%s\n", "Failed to initialize engine");
