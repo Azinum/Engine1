@@ -22,6 +22,7 @@ struct RawMesh loadRawMesh(const char* fileName) {
   return mesh;
 }
 
+// TODO: cleanup
 bool parseFile(struct RawMesh* mesh, char* path) {
   FILE* file = fopen(path, "r");
   if (!file) {
