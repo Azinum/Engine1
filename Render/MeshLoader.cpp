@@ -22,7 +22,7 @@ struct RawMesh loadRawMesh(const char* fileName) {
   return mesh;
 }
 
-// TODO: cleanup
+// TODO: cleanup!!
 bool parseFile(struct RawMesh* mesh, char* path) {
   FILE* file = fopen(path, "r");
   if (!file) {
@@ -31,6 +31,7 @@ bool parseFile(struct RawMesh* mesh, char* path) {
     return false;
   }
   std::vector<float> tempuvs;
+  std::vector<float> tempnormals;
 
   char word[128] = {0};
   while (true) {
@@ -68,6 +69,10 @@ bool parseFile(struct RawMesh* mesh, char* path) {
       mesh->uvIndices.push_back(y[0] - 1);
       mesh->uvIndices.push_back(y[1] - 1);
       mesh->uvIndices.push_back(y[2] - 1);
+
+      mesh->normalIndices.push_back(y[0] - 1);
+      mesh->normalIndices.push_back(y[1] - 1);
+      mesh->normalIndices.push_back(y[2] - 1);
     }
     else if (strcmp(word, "vt") == 0) {
       float u, v;
@@ -75,10 +80,18 @@ bool parseFile(struct RawMesh* mesh, char* path) {
       tempuvs.push_back(u);
       tempuvs.push_back(v);
     }
+    else if (strcmp(word, "vn") == 0) {
+      float x, y, z;
+      fscanf(file, "%f %f %f\n", &x, &y, &z);
+      tempnormals.push_back(x);
+      tempnormals.push_back(y);
+      tempnormals.push_back(z);
+    }
   }
 
   mesh->uvs.resize(mesh->indices.size());
-
+  mesh->normals.resize(mesh->indices.size());
+  
   for (int i = 0; i < mesh->indices.size(); i++) {
     unsigned int index = mesh->indices[i];
     float u, v;
@@ -86,6 +99,13 @@ bool parseFile(struct RawMesh* mesh, char* path) {
     v = tempuvs[mesh->uvIndices[i] * 2 + 1];
     mesh->uvs[index * 2] = u;
     mesh->uvs[index * 2 + 1] = 1 - v;
+    float x, y, z;
+    x = tempnormals[mesh->uvIndices[i] * 3];
+    y = tempnormals[mesh->uvIndices[i] * 3 + 1];
+    z = tempnormals[mesh->uvIndices[i] * 3 + 2];
+    mesh->normals[index * 3] = x;
+    mesh->normals[index * 3 + 1] = y;
+    mesh->normals[index * 3 + 2] = z;
   }
 
   fclose(file);
