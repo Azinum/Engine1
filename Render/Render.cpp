@@ -25,10 +25,12 @@ void renderTexturedModel(struct Model* model, struct Texture* texture) {
   glBindVertexArray(model->vao);
   glEnableVertexAttribArray(0);
   glEnableVertexAttribArray(1);
+  glEnableVertexAttribArray(2);
   glActiveTexture(GL_TEXTURE0);
   glBindTexture(GL_TEXTURE_2D, texture->textureId);
   glDrawElements(GL_TRIANGLES, model->drawCount, GL_UNSIGNED_INT, 0);
   glDisableVertexAttribArray(0);
   glDisableVertexAttribArray(1);
+  glDisableVertexAttribArray(2);
   glBindVertexArray(0);
 }

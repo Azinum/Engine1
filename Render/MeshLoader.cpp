@@ -70,9 +70,9 @@ bool parseFile(struct RawMesh* mesh, char* path) {
       mesh->uvIndices.push_back(y[1] - 1);
       mesh->uvIndices.push_back(y[2] - 1);
 
-      mesh->normalIndices.push_back(y[0] - 1);
-      mesh->normalIndices.push_back(y[1] - 1);
-      mesh->normalIndices.push_back(y[2] - 1);
+      mesh->normalIndices.push_back(z[0] - 1);
+      mesh->normalIndices.push_back(z[1] - 1);
+      mesh->normalIndices.push_back(z[2] - 1);
     }
     else if (strcmp(word, "vt") == 0) {
       float u, v;
@@ -91,7 +91,7 @@ bool parseFile(struct RawMesh* mesh, char* path) {
 
   mesh->uvs.resize(mesh->indices.size());
   mesh->normals.resize(mesh->indices.size());
-  
+
   for (int i = 0; i < mesh->indices.size(); i++) {
     unsigned int index = mesh->indices[i];
     float u, v;
@@ -100,9 +100,9 @@ bool parseFile(struct RawMesh* mesh, char* path) {
     mesh->uvs[index * 2] = u;
     mesh->uvs[index * 2 + 1] = 1 - v;
     float x, y, z;
-    x = tempnormals[mesh->uvIndices[i] * 3];
-    y = tempnormals[mesh->uvIndices[i] * 3 + 1];
-    z = tempnormals[mesh->uvIndices[i] * 3 + 2];
+    x = tempnormals[mesh->normalIndices[i] * 3];
+    y = tempnormals[mesh->normalIndices[i] * 3 + 1];
+    z = tempnormals[mesh->normalIndices[i] * 3 + 2];
     mesh->normals[index * 3] = x;
     mesh->normals[index * 3 + 1] = y;
     mesh->normals[index * 3 + 2] = z;
