@@ -22,6 +22,6 @@ void main() {
   gl_Position = projection * vec4(position, 1);
   texCoord = vec2(texcoord.x, texcoord.y);
 
-  surfaceNormal = (projection * vec4(normal, 0.0f)).xyz;
-  toLight = lightPosition - position;
+  surfaceNormal = normalize((projection * vec4(normal, 0.0f)).xyz);
+  toLight = normalize(lightPosition - position);
 }
