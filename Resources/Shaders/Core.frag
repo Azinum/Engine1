@@ -10,10 +10,12 @@ out vec4 outColour;
 uniform sampler2D tex;
 
 void main() {
+  vec3 unitNormal = normalize(surfaceNormal);
+  vec3 unitLight = normalize(toLight);
 
-  float dotProduct = dot(surfaceNormal, toLight);
-  float brightness = max(dotProduct, 0.1f);
+  float dotProduct = dot(unitNormal, unitLight);
+  float brightness = max(dotProduct, 0.02f);
   vec3 diffuse = brightness * vec3(1, 1, 1);
 
-  outColour = vec4(diffuse, 1.0f)  * texture(tex, texCoord);
+  outColour = vec4(diffuse, 1.0f) * texture(tex, texCoord);
 }

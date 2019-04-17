@@ -13,15 +13,15 @@ mat4 projection = mat4(
   3.0f/4.0f, 0,     0,    0.0f,
   0,         1,     0,    0.0f,
   0,         0,     1,    0.5f,
-  0,        -4,     0,    7.5f
+  0,        -2,     0,    5.5f
 );
 
-vec3 lightPosition = vec3(0, 2, -30);
+vec3 lightPosition = vec3(3, 0, -5);
 
 void main() {
   gl_Position = projection * vec4(position, 1);
   texCoord = vec2(texcoord.x, texcoord.y);
 
-  surfaceNormal = normalize((projection * vec4(normal, 0.0f)).xyz);
-  toLight = normalize(lightPosition - position);
+  surfaceNormal = (projection * vec4(normal, 0.0f)).xyz;
+  toLight = lightPosition - position;
 }
