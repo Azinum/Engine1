@@ -95,11 +95,11 @@ bool parseFile(struct RawMesh* mesh, char* path) {
   for (int i = 0; i < mesh->indices.size(); i++) {
     unsigned int index = mesh->indices[i];
     float u, v;
+    float x, y, z;
     u = tempuvs[mesh->uvIndices[i] * 2];
     v = tempuvs[mesh->uvIndices[i] * 2 + 1];
     mesh->uvs[index * 2] = u;
     mesh->uvs[index * 2 + 1] = 1 - v;
-    float x, y, z;
     x = tempnormals[mesh->normalIndices[i] * 3];
     y = tempnormals[mesh->normalIndices[i] * 3 + 1];
     z = tempnormals[mesh->normalIndices[i] * 3 + 2];

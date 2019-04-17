@@ -12,7 +12,7 @@ uniform sampler2D tex;
 void main() {
 
   float dotProduct = dot(surfaceNormal, toLight);
-  float brightness = max(dotProduct, 0.0f);
+  float brightness = max(dotProduct, 0.1f);
   vec3 diffuse = brightness * vec3(1, 1, 1);
 
   outColour = vec4(diffuse, 1.0f)  * texture(tex, texCoord);

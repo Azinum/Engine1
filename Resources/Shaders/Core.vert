@@ -16,7 +16,7 @@ mat4 projection = mat4(
   0,        -4,     0,    7.5f
 );
 
-vec3 lightPosition = vec3(0, 2, -20);
+vec3 lightPosition = vec3(0, 2, -30);
 
 void main() {
   gl_Position = projection * vec4(position, 1);

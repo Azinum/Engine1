@@ -86,6 +86,7 @@ int windowCreate(const char* title, int width, int height) {
   _texture = loadTexture("Resources/Textures/Texture_White");
   _model = createModel("Resources/Meshes/Dragon");
   _shader = createShader("Resources/Shaders/Core");
+  // glGetUniformLocation(_shader.program, "tex");
   return 0;
 }
 
