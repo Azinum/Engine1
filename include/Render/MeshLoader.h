@@ -12,6 +12,9 @@ struct RawMesh {
   std::vector<unsigned int> indices;
   std::vector<float> uvs;
   std::vector<float> normals;
+
+  std::vector<unsigned int> normalIndices;
+  std::vector<unsigned int> uvIndices;
 };
 
 struct RawMesh loadRawMesh(const char* fileName);

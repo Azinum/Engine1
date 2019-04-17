@@ -13,7 +13,7 @@ mat4 projection = mat4(
   3.0f/4.0f, 0,     0,    0.0f,
   0,         1,     0,    0.0f,
   0,         0,     1,    0.5f,
-  0,        -2,     0,    5.5f
+  0,         0,     0,    7.0f
 );
 
 vec3 lightPosition = vec3(3, 0, -5);
