@@ -73,7 +73,6 @@ int windowCreate(const char* title, int width, int height) {
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
   glShadeModel(GL_FLAT);
 
-  glFrontFace(GL_CW);
   glCullFace(GL_BACK);
   glEnable(GL_CULL_FACE);
 
@@ -83,7 +82,7 @@ int windowCreate(const char* title, int width, int height) {
   printf("GLSL VERSION: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
   printf("--\n");
 
-  _texture = loadTexture("Resources/Textures/Texture_White");
+  _texture = loadTexture("Resources/Textures/Texture_Test");
   _model = createModel("Resources/Meshes/Test");
   _shader = createShader("Resources/Shaders/Core");
   // glGetUniformLocation(_shader.program, "tex");
