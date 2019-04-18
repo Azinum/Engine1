@@ -6,6 +6,7 @@
 #include "Render/Mesh.h"
 
 struct Model {
+  bool isValid;
   unsigned int drawCount;
   unsigned int vao;
   unsigned int vbo;
