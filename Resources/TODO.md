@@ -7,5 +7,4 @@
 ## TODOs
 
 - Clean up and improve the .obj loader parser.
-- Load and use normals in models
 - Add lighting in shaders

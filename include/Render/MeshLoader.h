@@ -3,22 +3,10 @@
 #ifndef _MESHLOADER_H
 #define _MESHLOADER_H
 
+#include "Render/Mesh.h"
+
 #include <vector>
 
-struct RawMesh {
-  bool isValid;
-  unsigned int drawCount;
-  std::vector<float> vertices;
-  std::vector<unsigned int> indices;
-  std::vector<float> uvs;
-  std::vector<float> normals;
-
-  std::vector<unsigned int> normalIndices;
-  std::vector<unsigned int> uvIndices;
-};
-
-struct RawMesh loadRawMesh(const char* fileName);
-
-void freeRawMesh(struct RawMesh* mesh);
+bool loadOBJ(struct RawMesh* mesh, const char* fileName);
 
 #endif // _MESHLOADER_H

@@ -18,4 +18,6 @@ void useShader(struct Shader* shader);
 
 void bindAttribute(int program, int index, const char* name);
 
+void freeShader(struct Shader* shader);
+
 #endif // _SHADER_H

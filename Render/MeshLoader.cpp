@@ -5,25 +5,25 @@
 
 #include <algorithm>
 
-bool parseFile(struct RawMesh* mesh, char* path);
+bool parseOBJFile(struct RawMesh* mesh, char* path);
 
-struct RawMesh loadRawMesh(const char* fileName) {
-  struct RawMesh mesh = {0};
+bool loadOBJ(struct RawMesh* mesh, const char* fileName) {
   
   char path[512] = {0};
   sprintf(path, "%s.obj", fileName);
   
-  if (parseFile(&mesh, path)) {
-    mesh.drawCount = mesh.indices.size();
+  if (parseOBJFile(mesh, path)) {
+    mesh->drawCount = mesh->indices.size();
   } else {
     printf("%s\n", "Failed to parse .obj file");
+    return false;
   }
 
-  return mesh;
+  return true;
 }
 
 // TODO: cleanup!!
-bool parseFile(struct RawMesh* mesh, char* path) {
+bool parseOBJFile(struct RawMesh* mesh, char* path) {
   FILE* file = fopen(path, "r");
   if (!file) {
     printf("Failed to open file '%s'\n", path);
@@ -32,6 +32,8 @@ bool parseFile(struct RawMesh* mesh, char* path) {
   }
   std::vector<float> tempuvs;
   std::vector<float> tempnormals;
+  std::vector<unsigned int> normalIndices;
+  std::vector<unsigned int> uvIndices;
 
   char word[128] = {0};
   while (true) {
@@ -66,13 +68,13 @@ bool parseFile(struct RawMesh* mesh, char* path) {
       mesh->indices.push_back(x[1] - 1);
       mesh->indices.push_back(x[2] - 1);
 
-      mesh->uvIndices.push_back(y[0] - 1);
-      mesh->uvIndices.push_back(y[1] - 1);
-      mesh->uvIndices.push_back(y[2] - 1);
+      uvIndices.push_back(y[0] - 1);
+      uvIndices.push_back(y[1] - 1);
+      uvIndices.push_back(y[2] - 1);
 
-      mesh->normalIndices.push_back(z[0] - 1);
-      mesh->normalIndices.push_back(z[1] - 1);
-      mesh->normalIndices.push_back(z[2] - 1);
+      normalIndices.push_back(z[0] - 1);
+      normalIndices.push_back(z[1] - 1);
+      normalIndices.push_back(z[2] - 1);
     }
     else if (strcmp(word, "vt") == 0) {
       float u, v;
@@ -96,13 +98,13 @@ bool parseFile(struct RawMesh* mesh, char* path) {
     unsigned int index = mesh->indices[i];
     float u, v;
     float x, y, z;
-    u = tempuvs[mesh->uvIndices[i] * 2];
-    v = tempuvs[mesh->uvIndices[i] * 2 + 1];
+    u = tempuvs[uvIndices[i] * 2];
+    v = tempuvs[uvIndices[i] * 2 + 1];
     mesh->uvs[index * 2] = u;
     mesh->uvs[index * 2 + 1] = 1 - v;
-    x = tempnormals[mesh->normalIndices[i] * 3];
-    y = tempnormals[mesh->normalIndices[i] * 3 + 1];
-    z = tempnormals[mesh->normalIndices[i] * 3 + 2];
+    x = tempnormals[normalIndices[i] * 3];
+    y = tempnormals[normalIndices[i] * 3 + 1];
+    z = tempnormals[normalIndices[i] * 3 + 2];
     mesh->normals[index * 3] = x;
     mesh->normals[index * 3 + 1] = y;
     mesh->normals[index * 3 + 2] = z;
@@ -110,10 +112,4 @@ bool parseFile(struct RawMesh* mesh, char* path) {
 
   fclose(file);
   return true;
-}
-
-void freeRawMesh(struct RawMesh* mesh) {
-  if (!mesh) return;
-  if (!mesh->isValid) return;
-
 }

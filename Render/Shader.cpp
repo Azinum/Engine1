@@ -84,3 +84,9 @@ void useShader(struct Shader* shader) {
 void bindAttribute(int program, int index, const char* name) {
   glBindAttribLocation(program, index, name);
 }
+
+void freeShader(struct Shader* shader) {
+  if (!shader) return;
+  if (shader->program == -1) return;
+  glDeleteProgram(shader->program);
+}
