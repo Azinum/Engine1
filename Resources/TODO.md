@@ -7,4 +7,3 @@
 ## TODOs
 
 - Clean up and improve the .obj loader parser.
-- Add lighting in shaders

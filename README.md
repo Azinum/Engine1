@@ -3,7 +3,7 @@
 Game engine in C++ and OpenGL.
 
 
-## DEPENDENCIES
+## Dependencies
 
 - OpenGL
 - LibPNG

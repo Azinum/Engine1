@@ -83,8 +83,8 @@ int windowCreate(const char* title, int width, int height) {
   printf("GLSL VERSION: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
   printf("--\n");
 
-  _texture = loadTexture("Resources/Textures/Texture_Stall");
-  _model = createModel("Resources/Meshes/Stall");
+  _texture = loadTexture("Resources/Textures/Texture_White");
+  _model = createModel("Resources/Meshes/Dragon");
   _shader = createShader("Resources/Shaders/Core");
   // glGetUniformLocation(_shader.program, "tex");
   return 0;

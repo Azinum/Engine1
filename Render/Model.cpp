@@ -34,10 +34,10 @@ struct Model createModel(const char* file) {
 }
 
 void storeInAttributeList(struct Model* model, int attribute, int count, unsigned int size, float* data) {
-  unsigned int vbo; // Need to free this from memory
+  // unsigned int vbo; // Need to free this from memory
   
-  glGenBuffers(1, &vbo);
-  glBindBuffer(GL_ARRAY_BUFFER, vbo);
+  glGenBuffers(1, &model->vbo);
+  glBindBuffer(GL_ARRAY_BUFFER, model->vbo);
   glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW);
   glEnableVertexAttribArray(attribute);
   glVertexAttribPointer(attribute, count, GL_FLOAT, GL_FALSE, 0, 0);
